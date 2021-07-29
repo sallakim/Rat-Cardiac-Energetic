@@ -79,12 +79,12 @@ k_off = 723.8520; % manually tuned parameter!
 % transitions between super relaxed state and non relaxed state
 ksr = adjvar(4);
 kforce = adjvar(5)/7.5;  %dived by kPa to mmHg conversion rate
-kmsr =    50.032; % made-up number
+kmsr =    50.032; % fit to the invitro data
 
 kstiff1 = 1.4 * 1.7351e+03 * 7.5; % kPa/um (9/5 BM)
 kstiff2 = 1.4 * 45545 * 7.5; % kPa/um (9/5 BM)
 
-k_passive = 25; % mN / mm^2 / micron % for mean SHAM rat and TAC rat 1
+k_passive = 25; % mmHg/ micron % for mean SHAM rat and TAC rat 1
 
 % correcting rate constants for metabolite levels in LV, SEP, and RV
 kd_LV  = kd*(Pi_LV/K_Pi)/(1.0 + Pi_LV/K_Pi);
@@ -317,7 +317,7 @@ dXdT(11) = dSL_LV*P1_0_LV - kd_LV*P1_1_LV - k1_LV*f_alpha1i + km1*f_alpha0i;
 dXdT(12) = 2*dSL_LV*P1_1_LV - kd_LV*P1_2_LV - k1_LV*P1_2_LV + km1*P2_2_LV;
 
 dXdT(13) = -km1*f_alpha0o - k2*f_alpha2o + km2_LV*P3_0_LV + k1_LV*f_alpha1o;
-dXdT(14) = dSL_LV*P2_0_LV - k1_LV*f_alpha0i - k2*f_alpha2i + km2_LV*P3_1_LV + k1_LV*f_alpha1i;
+dXdT(14) = dSL_LV*P2_0_LV - km1*f_alpha0i - k2*f_alpha2i + km2_LV*P3_1_LV + k1_LV*f_alpha1i;
 dXdT(15) = 2*dSL_LV*P2_1_LV - km1*P2_2_LV - k2*P2_2_LV + km2_LV*P3_2_LV + k1_LV*P1_2_LV;
 
 dXdT(16) = +k2*f_alpha2o - km2_LV*P3_0_LV - k3_LV*f_alpha3o;
@@ -355,7 +355,7 @@ dXdT(22) = dSL_SEP*P1_0_SEP - kd_SEP*P1_1_SEP - k1_SEP*f_alpha1i + km1*f_alpha0i
 dXdT(23) = 2*dSL_SEP*P1_1_SEP - kd_SEP*P1_2_SEP - k1_SEP*P1_2_SEP + km1*P2_2_SEP;
 
 dXdT(24) = -km1*f_alpha0o - k2*f_alpha2o + km2_SEP*P3_0_SEP + k1_SEP*f_alpha1o;
-dXdT(25) = dSL_SEP*P2_0_SEP - k1_SEP*f_alpha0i - k2*f_alpha2i + km2_SEP*P3_1_SEP + k1_SEP*f_alpha1i;
+dXdT(25) = dSL_SEP*P2_0_SEP - km1*f_alpha0i - k2*f_alpha2i + km2_SEP*P3_1_SEP + k1_SEP*f_alpha1i;
 dXdT(26) = 2*dSL_SEP*P2_1_SEP - km1*P2_2_SEP       - k2*P2_2_SEP + km2_SEP*P3_2_SEP + k1_SEP*P1_2_SEP;
 
 dXdT(27) = +k2*f_alpha2o - km2_SEP*P3_0_SEP - k3_SEP*f_alpha3o;
@@ -392,7 +392,7 @@ dXdT(33) = dSL_RV*P1_0_RV - kd_RV*P1_1_RV - k1_RV*f_alpha1i + km1*f_alpha0i;
 dXdT(34) = 2*dSL_RV*P1_1_RV - kd_RV*P1_2_RV - k1_RV*P1_2_RV + km1*P2_2_RV;
 
 dXdT(35) = -km1*f_alpha0o - k2*f_alpha2o + km2_RV*P3_0_RV + k1_RV*f_alpha1o;
-dXdT(36) = dSL_RV*P2_0_RV - k1_RV*f_alpha0i - k2*f_alpha2i + km2_RV*P3_1_RV + k1_RV*f_alpha1i;
+dXdT(36) = dSL_RV*P2_0_RV - km1*f_alpha0i - k2*f_alpha2i + km2_RV*P3_1_RV + k1_RV*f_alpha1i;
 dXdT(37) = 2*dSL_RV*P2_1_RV - km1*P2_2_RV       - k2*P2_2_RV + km2_RV*P3_2_RV + k1_RV*P1_2_RV;
 
 dXdT(38) = +k2*f_alpha2o - km2_RV*P3_0_RV - k3_RV*f_alpha3o;
