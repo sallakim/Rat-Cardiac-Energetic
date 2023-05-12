@@ -1,6 +1,6 @@
 % EnergeticsModelScript
  function out = EnergeticsModelScript(TAN, CRtot, TEP, Ox_capacity, x_ATPase)
-
+%Testing changes - zarnigor
 % INPUTS
 %   TAN: total adenine nucleotide pool (M per liter cell)
 %   CRtot: total creatine pool (M per liter cell)
@@ -78,6 +78,7 @@ PCr_c = PCr/(Vcyto*Wcyto);
 Cr_c = Cr/(Vcyto*Wcyto);
 CRt = (PCr_c+Cr_c);
 
+% Substrate transport: Passive permeation of ATP, ADP, AMP and Pi
 % im:
 ATP_i = ATP_c;
 ADP_i = ADP_c;
