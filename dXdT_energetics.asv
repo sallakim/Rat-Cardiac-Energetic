@@ -6,7 +6,6 @@
 %   f     time derivatives of the model
 %   J     flux
 %
-%
 % Mandatory input parameters:
 %   t     time
 %   x     state variables at time t
@@ -17,7 +16,8 @@
 %   par   parameter vector for the free parameters
 %   
 %
-% State Variables:
+% State Variables: (mitochondrial matrix metabolic, inter-membrane space,
+% and cytosolic metabolite state variables)
 % [NAD_matrix , NADH_matrix , ADP_matrix , ATP_matrix , Pi_matrix , coQ_matrix , coQH2_matrix , ATP_c , ADP_c , Pi_c , phosphocreatine_c , creatine_c , AMP_c , H2O2aq_matrix , SOaq_matrix , cytocox_im , cytocred_im , O2aq_matrix , Pi_im , ADP_im , ATP_im , AMP_im ]
 %
 %
