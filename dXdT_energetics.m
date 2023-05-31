@@ -20,7 +20,7 @@
 % and cytosolic metabolite state variables)
 % [NAD_matrix , NADH_matrix , ADP_matrix , ATP_matrix , Pi_matrix , coQ_matrix , coQH2_matrix , ATP_c , ADP_c , Pi_c , phosphocreatine_c , creatine_c , AMP_c , H2O2aq_matrix , SOaq_matrix , cytocox_im , cytocred_im , O2aq_matrix , Pi_im , ADP_im , ATP_im , AMP_im ]
 %
-% Parameters:
+% Parameters: mitochondrial energetics 
 % [x_DH , x_SDH , x_ATPase , k1_F1F0 , ETC1Activity , ETC3_activity , ETC4_activity , x_HLE , x_PIH , x_ANT , k1_KH , x_AMPPERM , x_ADPPERM , x_ATPPERM , x_PIPERM , x_HPERM , x_KPERM , x_MPERM ]
 
 function [f,J] = dXdT_energetics(~,x,var,BX,K_BX,par,flag)
