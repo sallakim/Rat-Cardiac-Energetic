@@ -189,8 +189,7 @@ PCr_cell = Vcyto*Wcyto*PCr_cyto;
 Cr_cell = Vcyto*Wcyto*Cr_cyto;
 ATP_cell = Vcyto*Wcyto*ATP_cyto+Vmito*Wmito_x*ATP_matrix+Vmito*Wmito_i*ATP_im;
 PCrATP = PCr_cell/ATP_cell;
-
-% Fluxes (reaction and transpport fluxes from energetics model)
+% Fluxes
 J(3)=J(3);
 lcell = 1e-3*Rc_t/rho; % l of cell per g tissue; Vinnakota etal Am J Physiol Heart Circ Physiol. 2004 May;286(5):H1742-9
 J_ATPase_cell = J(3)*Vcyto; % J_ATPASE_cytoplasm % J_ATPase: mol/s/(l cell)

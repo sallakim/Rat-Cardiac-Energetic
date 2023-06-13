@@ -20,7 +20,8 @@
 % and cytosolic metabolite state variables)
 % [NAD_matrix , NADH_matrix , ADP_matrix , ATP_matrix , Pi_matrix , coQ_matrix , coQH2_matrix , ATP_c , ADP_c , Pi_c , phosphocreatine_c , creatine_c , AMP_c , H2O2aq_matrix , SOaq_matrix , cytocox_im , cytocred_im , O2aq_matrix , Pi_im , ADP_im , ATP_im , AMP_im ]
 %
-% Parameters: mitochondrial energetics 
+%
+% Parameters:
 % [x_DH , x_SDH , x_ATPase , k1_F1F0 , ETC1Activity , ETC3_activity , ETC4_activity , x_HLE , x_PIH , x_ANT , k1_KH , x_AMPPERM , x_ADPPERM , x_ATPPERM , x_PIPERM , x_HPERM , x_KPERM , x_MPERM ]
 
 function [f,J] = dXdT_energetics(~,x,var,BX,K_BX,par,flag)
@@ -28,7 +29,7 @@ function [f,J] = dXdT_energetics(~,x,var,BX,K_BX,par,flag)
 % mito membrane area per cell volume micron^{-1};
 gamma  = 5.99;
 
-%% LIST OF STATE VARIABLES (table 1 from Marzban 2020)
+%% LIST OF STATE VARIABLES
 % 1 NAD_matrix
 % 2 NADH_matrix
 % 3 ADP_matrix
@@ -211,7 +212,7 @@ P( 17 ) = 1  + h_im/Kh(17) + m_im/Km(17) + k_im/Kk(17);
 P( 18 ) = 1  + h_im/Kh(18) + m_im/Km(18) + k_im/Kk(18);
 P( 19 ) = 1  + h_im/Kh(19) + m_im/Km(19) + k_im/Kk(19);
 
-%% FLUX EQUATIONS (from Beard 2005)
+%% FLUX EQUATIONS
 %DH_matrix
 x_DH=par(1);
 r_DH=35.4;
@@ -422,7 +423,6 @@ s3_Frad_N2r_SQ = K1*s3_Fr_N2_SQ;
 PS4 = 1;
 % total
 s4_Fr_N2r_SQ = 1/PS4;
-
 % State Transition Rates
 % reverse NADH-Q reductase rates
 CI_kfNADH_02 = 1.9642e+03;
@@ -1013,7 +1013,7 @@ Phi_M = J_M - sum( m_im*f(ii)'./(Km(ii).*P(ii)) );
 Phi_K = J_K - sum( k_im*f(ii)'./(Kk(ii).*P(ii)) );
 % ALPHAs
 % aH = 1 + pHBpH;
-aM = 1 + pMBpM;f
+aM = 1 + pMBpM;
 aK = 1 + pKBpK;
 % ADDITIONAL BUFFER for [H+]
 aH = 1 + pHBpH + BX(3)/K_BX(3)/(1+h_im/K_BX(3))^2; % M
