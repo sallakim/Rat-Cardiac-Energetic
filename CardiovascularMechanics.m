@@ -2,6 +2,9 @@
 % DriverGeneticAlgorithm_MechanoEnegergetic
 clear; 
 
+%% Scaling factors 
+scaling_factor_Vw_LV = 1; 
+
 %% specifying what simulation should be run, all rats or just a single rat.
 rat_number = 10; % assgining the rat number
 
@@ -109,7 +112,7 @@ V_LV  = edLV_target/1000 + 0.2;% intial value for V_LV and V_RV assumed to be eq
 V_RV  = edLV_target/1000 + 0.2;%
 
 
-Vw_LV = (LVW*2/3)/1000/1.05;
+Vw_LV = scaling_factor_Vw_LV*(LVW*2/3)/1000/1.05;
 Vw_SEP =(LVW/3)/1000/1.05;
 Vw_RV = RVW/1000/1.05;
 
@@ -422,7 +425,9 @@ SL_RV_MAX = max(SL_RV);
 x_ATPase_err = (adjvar(9)- ATP_ase_mechannics_Averge_LV_SEP)/ATP_ase_mechannics_Averge_LV_SEP;
 
 %% Plotting MechanoEnergetics Results
-%% Plotting the pressure time course figure
+%% Plotting the pressure time course figures 
+
+% Left sided
 ylimMax = max(P_LV)+ 20;
  
 figure(1); clf;
@@ -449,7 +454,32 @@ ylabel('P (mmHg)','fontsize',20,'FontWeight','bold')
 xlabel('t (sec)','fontsize',20,'FontWeight','bold')
 set(gca,'Fontsize',20,'linewidth',2)
 
-%% Plotting the PV loop figure
+% Right sided 
+figure(3); clf;
+hold on;
+title(['rat number = ', num2str(rat_number)]);
+if shamRat == 1
+plot(t,P_RV,'k',t,P_PA,'g','linewidth',2);
+
+else
+plot(t,P_RV,'k',t,P_PA,'g','linewidth',2);
+hold on
+       
+end
+
+legend('P_{RV}','P_{PA}');
+
+set(gca,'Fontsize',20,'linewidth',2)
+box off;
+ legend('boxoff') 
+set(gca,'Ylim',[0 50]);
+ylabel('P (mmHg)','fontsize',20,'FontWeight','bold')
+
+xlabel('t (sec)','fontsize',20,'FontWeight','bold')
+set(gca,'Fontsize',20,'linewidth',2)
+
+
+%% Plotting the LV PV loop figure
 figure(2); clf;
  
 plot(V_LV,P_LV,'k',[edLV_target edLV_target]./1000,[0 ylimMax],'k--',[esLV_target esLV_target]./1000,[0 ylimMax],'k--','linewidth',2); 
@@ -460,6 +490,23 @@ ylabel('P (mmHg)','fontsize',20,'FontWeight','bold')
 xlabel('V (mL)','fontsize',20,'FontWeight','bold')
 set(gca,'Fontsize',20,'linewidth',2)
 box off;
+title('LV PV Loop')
+
+% RV
+figure(4); clf;
+ 
+esRV_target = 0.417275; 
+edRV_target = 0.566951;
+plot(V_RV,P_RV,'k',[edRV_target edRV_target],[0 ylimMax],'k--',[esRV_target esRV_target],[0 ylimMax],'k--','linewidth',2); 
+set(gca,'Xlim',[0 0.70]);
+set(gca,'Ylim',[0 50]);
+
+ylabel('P (mmHg)','fontsize',20,'FontWeight','bold')
+xlabel('V (mL)','fontsize',20,'FontWeight','bold')
+set(gca,'Fontsize',20,'linewidth',2)
+box off;
+title('RV PV Loop')
+%%
 
 txt_ATPase = ['x ATPase =', num2str(ATP_ase_mechannics_Averge_LV_SEP)];
 disp(txt_ATPase)
@@ -467,6 +514,8 @@ txt_XB_rate = ['rate turn XB =', num2str(rate_of_XB_turnover_ave)];
 disp(txt_XB_rate)
 disp(MAP)
 disp(EF_LV_sim) 
+
+%% Plotting the RV PV loop 
 % % save data to excel file 
 % CO_sim =  (max(V_LV)-min(V_LV))*HR;
 % k1sr = adjvar(4);
